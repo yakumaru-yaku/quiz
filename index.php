@@ -57,9 +57,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 if (empty($_SESSION)) {
-    $_SESSION['correct_count'] = 0;
-    $_SESSION['num'] = 0;
+    resetSession();
 }
+
+$_SESSION['token'] = sha1(uniqid(mt_rand(), true));
 
 $qnum = mt_rand(0, count($quizList) - 1);
 $quiz = $quizList[$qnum];
